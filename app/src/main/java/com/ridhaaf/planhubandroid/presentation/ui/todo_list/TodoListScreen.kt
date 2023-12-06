@@ -36,7 +36,8 @@ fun TodoListScreen(
             when (event) {
                 is UiEvent.ShowSnackbar -> {
                     val result = snackbarHostState.showSnackbar(
-                        message = event.message, actionLabel = event.action
+                        message = event.message,
+                        actionLabel = event.action,
                     )
                     if (result == SnackbarResult.ActionPerformed) {
                         viewModel.onEvent(TodoListEvent.OnUndoDeleteClick)

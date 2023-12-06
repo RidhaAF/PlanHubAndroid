@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -40,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.0"
+        kotlinCompilerExtensionVersion = "1.5.5"
     }
     packaging {
         resources {
@@ -74,19 +75,19 @@ dependencies {
     // Dagger - Hilt
     val daggerVersion = "2.49"
     implementation("com.google.dagger:hilt-android:$daggerVersion")
-    annotationProcessor("com.google.dagger:hilt-compiler:$daggerVersion")
+    ksp("com.google.dagger:hilt-compiler:$daggerVersion")
     // For instrumentation tests
     androidTestImplementation("com.google.dagger:hilt-android-testing:$daggerVersion")
-    androidTestAnnotationProcessor("com.google.dagger:hilt-compiler:$daggerVersion")
+    kspAndroidTest("com.google.dagger:hilt-compiler:$daggerVersion")
     // For local unit tests
     testImplementation("com.google.dagger:hilt-android-testing:$daggerVersion")
-    testAnnotationProcessor("com.google.dagger:hilt-compiler:$daggerVersion")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kspTest("com.google.dagger:hilt-compiler:$daggerVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     // Room
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
-    ksp("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     // Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$roomVersion")
